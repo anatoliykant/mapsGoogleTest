@@ -7,17 +7,24 @@
 //
 
 import UIKit
+import GoogleMaps
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        GMSServices.provideAPIKey("AIzaSyC3p4XP7YA6td5wpxXmZlCo137Pe1z--Wc")
+        let camera = GMSCameraPosition.camera(withLatitude: 37.621723, longitude: -122.380542, zoom: 12.0)
+        let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+        view = mapView
+        
+        
+        let currentLocation = CLLocationCoordinate2DMake(37.621723, -122.380542)
+        let marker  = GMSMarker(position: currentLocation)
+        marker.title = "SFO Airport"
+        marker.map = mapView
+        
     }
 
 
